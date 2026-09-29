@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#090b12" />
+  <title>Laptop Remote</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section id="remotePanel" class="remote">
+      <header class="topbar topbar-v3" id="top">
+        <div class="header-shortcuts">
+          <button id="shortcutToggle" class="header-shortcut-toggle" type="button" aria-expanded="false" aria-controls="shortcutMenu">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6.5h16v11H4z" stroke="currentColor" stroke-width="1.7"/><path d="M8 20h8M12 17.5V20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            <span>Shortcuts</span><span class="dropdown-chevron">⌄</span>
+          </button>
+          <div id="shortcutMenu" class="shortcut-dropdown shortcut-dropdown-split" role="menu">
+            <div class="shortcut-category">
+              <div class="shortcut-dropdown-head"><strong>PC shortcuts</strong><span class="muted">pc-shortcuts.csv</span></div>
+              <div id="pcShortcutGrid" class="shortcut-site-grid pc-shortcut-grid"><div class="shortcut-loading muted">Loading apps…</div></div>
+            </div>
+            <div class="shortcut-category shortcut-category-web">
+              <div class="shortcut-dropdown-head"><strong>Website shortcuts</strong><span class="muted">shortcuts.csv</span></div>
+              <div id="shortcutGrid" class="shortcut-site-grid"><div class="shortcut-loading muted">Loading websites…</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-brand" aria-label="Laptop Remote">
+          <div class="mini-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="12" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M8 20h8M12 16v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <div class="header-brand-copy"><strong>Laptop Remote</strong><span id="deviceLabel" class="muted small"></span></div>
+        </div>
+
+        <div id="status" class="status offline">Connecting</div>
+      </header>
+
+      <section class="panel control-panel" id="mouseSection">
+        <div class="section-heading">
+          <div><span class="section-kicker">POINTER</span><h2>Mouse control</h2></div>
+          <button class="jump-button" data-scroll-to="keyboardSection" aria-label="Jump to keyboard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M6 10h1M9 10h1M12 10h1M15 10h1M18 10h.1M7 14h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span class="jump-label">Keyboard</span><span class="jump-arrow">↓</span></button>
+        </div>
+
+        <div id="trackpad" class="trackpad" aria-label="Trackpad">
+          <div class="trackpad-grid" aria-hidden="true"></div>
+          <div class="trackpad-copy">
+            <div class="trackpad-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9.5 4.5v5M12 3v6.5M14.5 4.5v5M7 7v5.5l-1-1a1.8 1.8 0 0 0-2.6 2.5l4.2 5A4 4 0 0 0 10.7 20H15a5 5 0 0 0 5-5v-4.5a1.8 1.8 0 0 0-3.5-.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span>Touch anywhere</span><small>Tap to click · hold the thumb away from center to keep moving</small>
+          </div>
+          <div id="joystickBase" class="joystick-base" aria-hidden="true"><div id="joystickKnob" class="joystick-knob"></div></div>
+          <div id="scrollpad" class="scrollpad" aria-label="Vertical scroll bar">
+            <span class="scroll-arrow" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="m5 12 5-5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div id="scrollTrack" class="scroll-track" aria-hidden="true"><div class="scroll-center-mark"></div><div id="scrollKnob" class="scroll-knob"><span></span><span></span><span></span></div></div>
+            <span class="scroll-arrow" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="m5 8 5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </div>
+
+        <div class="media-controls" aria-label="Media controls">
+          <button class="media-button" data-key="left" aria-label="Back"><svg viewBox="0 0 24 24" fill="none"><path d="M6 5v14M18.5 6.5 9.5 12l9 5.5v-11Z" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Back</span></button>
+          <button class="media-button media-button-main" data-key="space" aria-label="Play or pause"><svg viewBox="0 0 24 24" fill="none"><rect x="6.5" y="5" width="3.6" height="14" rx="1.2" fill="currentColor"/><rect x="13.9" y="5" width="3.6" height="14" rx="1.2" fill="currentColor"/></svg><span>Pause</span></button>
+          <button class="media-button" data-key="right" aria-label="Forward"><svg viewBox="0 0 24 24" fill="none"><path d="M18 5v14M5.5 6.5l9 5.5-9 5.5v-11Z" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Forward</span></button>
+        </div>
+
+        <div class="button-row three mouse-actions">
+          <button data-click="left"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3a7 7 0 0 0-7 7v4a7 7 0 1 0 14 0v-4a7 7 0 0 0-7-7Zm0 0v6M5 10h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span>Left click</span></button>
+          <button id="holdBtn" class="hold-button"><svg viewBox="0 0 24 24" fill="none"><path d="M8 11V6.5a1.5 1.5 0 0 1 3 0V10M11 9V5.5a1.5 1.5 0 0 1 3 0V10M14 9V6.5a1.5 1.5 0 0 1 3 0V12M17 10.5a1.5 1.5 0 0 1 3 0V15a6 6 0 0 1-6 6h-2.1a6 6 0 0 1-4.4-1.9L4.4 15.7a1.6 1.6 0 0 1 2.2-2.3L8 14.7V11Z" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="holdBtnText">Hold</span></button>
+          <button data-click="right"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3a7 7 0 0 0-7 7v4a7 7 0 1 0 14 0v-4a7 7 0 0 0-7-7Zm0 0v6M5 10h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span>Right click</span></button>
+        </div>
+
+        <div class="button-row two utility-actions">
+          <button data-key="escape"><span class="keycap">Esc</span><span>Escape</span></button>
+          <button id="searchBtn"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4.2 4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Search</span><small>Ctrl + L</small></button>
+        </div>
+
+        <div class="inline-volume-row" id="volumeSection" aria-label="Windows master volume">
+          <button id="muteToggleBtn" class="volume-mute-inline" type="button" aria-label="Mute or unmute Windows volume">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10v4h4l5 4V6L8 10H4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m17 9 4 6M21 9l-4 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            <span>Mute / Unmute</span>
+          </button>
+          <div class="volume-slider-wrap">
+            <div class="volume-inline-label"><span>Windows volume</span><strong id="volumeValue">50%</strong></div>
+            <input id="volumeSlider" type="range" min="0" max="100" value="50" step="1" aria-label="Windows master volume" />
+          </div>
+        </div>
+      </section>
+
+
+      <section class="panel keyboard-panel" id="keyboardSection">
+        <div class="section-heading compact-heading">
+          <div><span class="section-kicker">KEYBOARD</span><h2>Type &amp; shortcuts</h2></div>
+          <button class="jump-button" data-scroll-to="mouseSection" aria-label="Back to mouse"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a6 6 0 0 0-6 6v6a6 6 0 0 0 12 0V9a6 6 0 0 0-6-6Z" stroke="currentColor" stroke-width="1.7"/><path d="M12 3v6M6 10h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span class="jump-label">Mouse</span><span class="jump-arrow">↑</span></button>
+        </div>
+
+        <label>Type on laptop<textarea id="textInput" rows="3" placeholder="Type text here..."></textarea></label>
+        <div class="send-actions">
+          <button id="sendTextBtn" class="primary send-button secondary-primary"><span>Send text</span><svg viewBox="0 0 24 24" fill="none"><path d="m4 4 17 8-17 8 3-8-3-8Zm3 8h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button id="sendTextEnterBtn" class="primary send-button"><span>Send + Enter</span><svg viewBox="0 0 24 24" fill="none"><path d="M20 5v7a4 4 0 0 1-4 4H5m4-4-4 4 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+
+        <div class="button-grid shortcut-grid">
+          <button data-key="enter">Enter</button>
+          <button data-key="backspace">Backspace</button>
+          <button data-key="escape">Esc</button>
+          <button data-key="tab">Tab</button>
+          <button data-hotkey="ctrl,c">Ctrl + C</button>
+          <button data-hotkey="ctrl,v">Ctrl + V</button>
+        </div>
+
+        <button id="centerMouseBtn" class="wide-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg><span>Bring mouse to screen center</span></button>
+      </section>
+
+      <section class="panel sensitivity-panel">
+        <div><span class="section-kicker">POINTER SPEED</span><label for="sensitivity">Sensitivity</label></div>
+        <span id="sensitivityValue">2.0×</span>
+        <input id="sensitivity" type="range" min="0.5" max="3" value="2.0" step="0.1" />
+      </section>
+
+      <section class="panel power-panel" id="powerSection">
+        <div class="section-heading compact-heading"><div><span class="section-kicker">SESSION &amp; POWER</span><h2>Protected actions</h2></div><button class="jump-button bottom-jump-button" data-scroll-to="mouseSection" aria-label="Bring me back up"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5M6.5 10.5 12 5l5.5 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="jump-label">Bring me back up</span><span class="jump-arrow">↑</span></button></div>
+        <p class="muted small power-note">These actions ask for your password only when you use them.</p>
+        <div class="power-actions">
+          <button id="restartBtn" class="warning-button"><svg viewBox="0 0 24 24" fill="none"><path d="M20 7v5h-5M19 12a7 7 0 1 0-1.9 4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Restart PC</span></button>
+          <button id="shutdownBtn" class="danger-button strong-danger"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v9M7.5 5.8A8 8 0 1 0 16.5 5.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Shut down PC</span></button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div id="passwordModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="passwordTitle">
+    <div class="modal-card">
+      <div class="modal-icon" id="modalIcon">!</div>
+      <h3 id="passwordTitle">Protected action</h3>
+      <p id="passwordDescription" class="muted">Enter your password to continue.</p>
+      <input id="actionPassword" type="password" inputmode="numeric" autocomplete="current-password" placeholder="Password" />
+      <p id="passwordError" class="message modal-error"></p>
+      <div class="modal-actions"><button id="cancelActionBtn">Cancel</button><button id="confirmActionBtn" class="danger-button">Confirm</button></div>
+    </div>
+  </div>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>

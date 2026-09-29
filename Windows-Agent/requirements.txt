@@ -1,0 +1,5 @@
+websocket-client>=1.8,<2
+PyAutoGUI>=0.9.54,<1
+pyperclip>=1.9,<2
+pycaw
+comtypes
